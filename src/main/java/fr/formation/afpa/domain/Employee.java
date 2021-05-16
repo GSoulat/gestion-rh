@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
@@ -35,23 +36,24 @@ public class Employee {
 	private Set<Employee> employees = new HashSet<Employee>();
 	
 	@Column(name= "first_name", nullable = false, length = 30)
+	@NotEmpty(message = "Merci de saisir votre prénom")
 	private String firstName;
 	
 	@Column(name= "last_name", nullable = false, length = 30)
+	@NotEmpty(message = "Merci de saisir votre nom")
 	private String lastName;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name= "start_date", nullable = false)
+//	@NotEmpty(message = "Merci de saisir votre date d'embauche")
 	private Date startDate;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name= "end_date")
 	private Date endDate;
-	
-	
-
 
 	@Column
+	@NotEmpty(message = "Merci de saisir votre titre")
 	private String title;
 
 	@ManyToOne
@@ -60,18 +62,25 @@ public class Employee {
 	
 	public Employee() {
 	}
-	
 
-	public Employee(String firstName, String lastName, Date startDate, Date endDate, String title) {
+//	public Employee(String firstName, String lastName, Date startDate, Date endDate, String title) {
+//		super();
+//		this.firstName = firstName;
+//		this.lastName = lastName;
+//		this.startDate = startDate;
+//		this.endDate = endDate;
+//		this.title = title;
+//	}
+
+	public Employee(String firstName, String lastName, Date startDate, Date endDate, String title, Employee manager ) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.title = title;
+		this.manager = manager;
 	}
-
-	
 
 	public Department getDepartment() {
 		return department;
@@ -152,8 +161,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [empId=" + empId + ", firstName=" + firstName + ", lastName=" + lastName + ", startDate="
-				+ startDate + ", endDate=" + endDate + ", title=" + title + ", department=" + department + "]";
+		return firstName + " " + lastName;
 	}
 
 	

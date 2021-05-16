@@ -1,0 +1,15 @@
+package fr.formation.afpa.service;
+import java.util.List;
+import fr.formation.afpa.domain.Employee;
+
+public interface IEmployeeService {
+    Employee findById(Integer id);
+    List<Employee> findAll();
+    Employee save(Employee t);
+    Employee update(Employee t);
+    void delete(Employee t);
+    void deleteById(Integer id);
+    List<Employee> findManager();
+    List<Employee> findSansManager();
+    List<Employee> findequipe (Integer id);
+}

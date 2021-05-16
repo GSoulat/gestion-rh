@@ -4,25 +4,25 @@ import java.util.List;
 
 import fr.formation.afpa.domain.Employee;
 
+
 public interface IEmployeeDaoJpa {
 
 	//Read
 	Employee findById(Integer id);
-	List<Employee> finAll();
+	List<Employee> findAll();
 	
 //	Create
 	Integer save(Employee e);
 	
 //	Update
-	Employee Update(Employee e);
+	Employee update(Employee e);
 	
 	//Delete
 	void delete(Employee e);
 	void deleteById(Integer id);
+	 List<Employee> findManager();
 	
-	
-	
-	
-	
+	List<Employee> findSansManager();
+	List<Employee> findequipe(Integer id);
 	
 }
