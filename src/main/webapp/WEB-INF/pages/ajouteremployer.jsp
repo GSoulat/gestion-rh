@@ -36,7 +36,8 @@
 	<section class="container mt-5 ">
 		<div class="row mt-5">
 			<div class="card shadow-lg mt-3 mb-5 bg-body rounded col-12 col-lg-9 d-flex justify-content-center">
-				<h3>Ajouter un employer</h3>
+				<h3><spring:message
+							code="title.add"></spring:message></h3>
 				<form:form modelAttribute="employee" action="save" method="post">
         		<div class="container d-flex justify-content">
         		<img alt="" src="img/people-1979261_640.jpg" class="m-3 rounded" width="500" height="370">
@@ -44,35 +45,39 @@
 					<div class="form-floating mb-3">
 						<form:input type="text" class="form-control" id="floatingInput"
 							path="firstName" placeholder="FIRST_NAME"></form:input>
-						<label for="floatingInput">FIRST_NAME</label>
+						<label for="floatingInput"><spring:message
+							code="table.firstname"></spring:message></label>
 					</div>
 					 <small><form:errors path="firstName" cssClass="error" /></small>
 
 					<div class="form-floating mb-3">
 						<form:input type="text" class="form-control" id="floatingInput"
 							path="lastName" placeholder="LAST_NAME"></form:input>
-						<label for="floatingInput">LAST_NAME</label>
+						<label for="floatingInput"><spring:message
+							code="table.lastname"></spring:message></label>
 					</div>
 					<small><form:errors path="lastName" cssClass="error" /></small>
 
 					<div class="form-floating mb-3">
 						<form:input type="text" class="form-control" id="floatingInput"
-							path="title" placeholder="TITLE"></form:input>
-						<label for="floatingInput">TITLE</label>
+							path="title" ></form:input>
+						<label for="floatingInput"><spring:message
+							code="table.title"></spring:message></label>
 					</div>
 					<small><form:errors path="title" cssClass="error" /></small>
 
 					<div class="form-floating mb-3">
 						<form:input type="date" class="form-control" id="floatingInput"
 							path="startDate" placeholder="START_DATE"></form:input>
-						<label for="floatingInput">START_DATE</label>
+						<label for="floatingInput"><spring:message
+							code="table.startdate"></spring:message></label>
 					</div>
 					<small><form:errors path="startDate" cssClass="error" /></small>
 
 					<div class="form-group">
-						<select class="form-select" name="superiorEmpId">
-							<option value="0">---- Selectionnez un manager
-										----</option>
+						<select class="form-select" name="manager">
+							<option value="0"><spring:message
+							code="form.select.manager"></spring:message></option>
 							<c:forEach items="${listmanager}" var="manager">
 								<c:choose>
 									<c:when test="${employee.manager.empId == manager.empId}">
@@ -87,7 +92,8 @@
 					</div>
 
 					<input class="btn btn-outline-primary mb-3  mt-2" type="submit"
-						value="sauvegarder">
+						value=<spring:message
+							code="form.save"></spring:message>>
 						</div>
 						</div>
 				</form:form>

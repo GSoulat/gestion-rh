@@ -55,6 +55,7 @@ public class employeecontroller {
 		List<Employee> equipeList = new ArrayList<Employee>();
 
 		for (Employee employee : listM) {
+			
 			equipeList = employeeService.findequipe(employee.getEmpId());
 			System.out
 					.println("*********************************listEquipe********************************************");
@@ -64,6 +65,24 @@ public class employeecontroller {
 
 		model.addAttribute("listDeList", listDeList);
 		return "listmanager";
+	}
+	
+	@GetMapping("/listmanager2")
+	public String listmanager2(Model model) {
+		List<Employee> listM = employeeService.findManager();
+		System.out.println("*********************************listManager********************************************");
+		System.out.println(listM);
+		model.addAttribute("listmanager", listM);
+		return "listmanager2";
+	}
+	
+	@GetMapping(path = "/listequipe")
+	public String listequipe(@RequestParam(name = "empId") Integer empId, Model model) {
+		Employee employee = employeeService.findById(empId);
+		List<Employee> listM = employeeService.findequipe(empId);
+		model.addAttribute("listmanager", listM);
+		model.addAttribute("employee", employee);
+		return "listequipe";
 	}
 
 	@GetMapping(path = "/hello")

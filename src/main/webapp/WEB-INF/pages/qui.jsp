@@ -27,7 +27,8 @@
 	<div class="mt-5">
 		<div class="mt-5">
 			<div class="block card mt-5 p-3">
-				<h3>Qui nous sommes ?</h3>
+				<h3><spring:message
+							code="title.qui"></spring:message></h3>
 				<div class="container d-flex justify-content  ">
 					<div class=" container">
 						<h1 class=" mt-5">What is Lorem Ipsum?</h1>

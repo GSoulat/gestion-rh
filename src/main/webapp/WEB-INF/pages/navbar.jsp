@@ -10,10 +10,12 @@
 		<li class="menu-item"><a href="#0"><spring:message
 					code="nabbar.manager"></spring:message></a>
 			<ol class="sub-menu">
-<%-- 				<li class="menu-item"><a href="ajouterunepage"><spring:message --%>
-<%-- 							code="nabbar.listmanageur"></spring:message></a></li> --%>
+				<%-- 				<li class="menu-item"><a href="ajouterunepage"><spring:message --%>
+				<%-- 							code="nabbar.listmanageur"></spring:message></a></li> --%>
 				<li class="menu-item"><a href="listmanager"><spring:message
 							code="nabbar.listmanageur"></spring:message></a></li>
+				<li class="menu-item"><a href="listmanager2"><spring:message
+							code="nabbar.listmanageur2"></spring:message></a></li>
 			</ol></li>
 		<li class="menu-item"><a href="#0">Employee</a>
 			<ol class="sub-menu">

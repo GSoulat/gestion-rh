@@ -44,22 +44,32 @@ pageEncoding="utf-8"%>
 		<div class="row mt-5 " >
 			<div
 				class="col-12 card shadow-lg p-3  mb-5 bg-body rounded mt-5">
-				<h3>Liste des Employees</h3>
+				<h3><spring:message
+							code="title.employee"></spring:message></h3>
 				<div class="">
+				 <button id="exportpdf" class="btn btn-sm btn-danger clearfix"><span class="fa fa-file-pdf-o"></span> Export en PDF</button>
+				<button id="exportxls" class="btn btn-sm btn-success clearfix"><span class="fa fa-file-excel-o"></span> Export en Excel</button>
 				<table class="table table-striped "
 					data-toggle="table" data-search="true" 
-					data-pagination="true">
-					<thead class="bg-success">
+					data-pagination="true" id="exportTable">
+					<thead class="bg-warning fw-bold">
 						<tr>
-							
-							<th data-sortable="true" data-field="TITLE">title</th>
-							<th data-sortable="true" data-field="FIRST_NAME">first_name</th>
-							<th data-sortable="true" data-field="LAST_NAME">last_name</th>
-							<th data-sortable="true" data-field="START_DATE">start_date</th>
-							<th data-sortable="true" data-field="END_DATE">end_date</th>
-							<th data-sortable="true" data-field="MANAGER">manager</th>
-							<th data-sortable="true" data-field="Edit">Edit</th>
-							<th data-sortable="true" data-field="Delete">Delete</th>
+							<th data-sortable="true" data-field="TITLE"><spring:message
+							code="table.title"></spring:message></th>
+							<th data-sortable="true" data-field="FIRST_NAME"><spring:message
+							code="table.firstname"></spring:message></th>
+							<th data-sortable="true" data-field="LAST_NAME"><spring:message
+							code="table.lastname"></spring:message></th>
+							<th data-sortable="true" data-field="START_DATE"><spring:message
+							code="table.startdate"></spring:message></th>
+							<th data-sortable="true" data-field="END_DATE"><spring:message
+							code="table.enddate"></spring:message></th>
+							<th data-sortable="true" data-field="MANAGER"><spring:message
+							code="table.manager"></spring:message></th>
+							<th data-sortable="true" data-field="Edit"><spring:message
+							code="table.edit"></spring:message></th>
+							<th data-sortable="true" data-field="Delete"><spring:message
+							code="table.delete"></spring:message></th>
 						</tr>
 					</thead>
 						<tbody>
@@ -107,5 +117,149 @@ pageEncoding="utf-8"%>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/jszip.min.js"></script>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#exportpdf").click(function () {
+            // parse the HTML table element having an id=exportTable
+            var dataSource = shield.DataSource.create({
+                data: "#exportTable",
+                schema: {
+                    type: "table",
+                    fields: {
+                    	first_name: { type: String },
+                        last_name: { type: String},
+                        title: { type: String },
+                        manager: { type: String },
+                    }
+                }
+            });
+
+            // when parsing is done, export the data to PDF
+            dataSource.read().then(function (data) {
+                var pdf = new shield.exp.PDFDocument({
+                    author: "Guillaume SOULAT",
+                    created: new Date()
+                });
+
+                pdf.addPage("a4", "portrait");
+
+                pdf.table(
+                    20,
+                    20,
+                    data,
+                    [
+                        { field: "first_name", title: "Prenom" },
+                        { field: "last_name", title: "Nom" },
+                        { field: "title", title: "Poste" },
+                        { field: "manager", title: "Responsable" }
+                    ],
+                    {
+                        margins: {
+                            top: 50,
+                            left: 20
+                        }
+                    }
+                );
+
+                pdf.saveAs({
+                    fileName: "GestionRHpdf"
+                });
+            });
+        });
+    });
+</script>
+
+<style>
+    #exportpdf {
+        border-radius: 0;
+    }
+</style> 
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#exportxls").click(function () {
+            // parse the HTML table element having an id=exportTable
+            var dataSource = shield.DataSource.create({
+                data: "#exportTable",
+                schema: {
+                    type: "table",
+                    fields: {
+                    	first_name: { type: String },
+                        last_name: { type: String},
+                        title: { type: String },
+                        manager: { type: String },
+                    }
+                }
+            });
+
+            // when parsing is done, export the data to Excel
+            dataSource.read().then(function (data) {
+                new shield.exp.OOXMLWorkbook({
+                    author: "Guillaume SOULAT",
+                    worksheets: [
+                        {
+                            name: "Gesstion RH Table",
+                            rows: [
+                                {
+                                    cells: [
+                                        {
+                                            style: {
+                                                bold: true
+                                            },
+                                            type: String,
+                                            value: "firstName"
+                                        },
+                                        {
+                                            style: {
+                                                bold: true
+                                            },
+                                            type: String,
+                                            value: "lastName"
+                                        },
+                                        {
+                                            style: {
+                                                bold: true
+                                            },
+                                            type: String,
+                                            value: "title"
+                                        },
+                                        {
+                                            style: {
+                                                bold: true
+                                            },
+                                            type: String,
+                                            value: "manager"
+                                        }
+                                    ]
+                                }
+                            ].concat($.map(data, function(item) {
+                                return {
+                                    cells: [
+                                    	 { type: String, value: item.first_name },
+                                         { type: String, value: item.last_name },
+                                         { type: String, value: item.title },
+                                         { type: String, value: item.manager }
+                          
+                                    ]
+                                };
+                            }))
+                        }
+                    ]
+                }).saveAs({
+                    fileName: "GestionRhExcel"
+                });
+            });
+        });
+    });
+</script>
+
+<style>
+    #exportxls {
+        border-radius: 0;
+    }
+</style>
 </body>
 </html>

@@ -26,22 +26,30 @@
 	<section class="container mt-5">
 		<div class="row mt-5">
 			<div class="card shadow-lg mt-3 mb-5 bg-body rounded col-12 col-lg-9 d-flex justify-content-center ">
-				<h3>Contact :</h3>
+				<h3><spring:message
+							code="title.contact"></spring:message> :</h3>
 				<form action="save" method="post">
 					<div class="container d-flex justify-content ">
 						<img alt="" src="img/contact-us-2993000_640.jpg" class="m-3 rounded"
 							width="500" height="370">
 						<div class="container">
-							<label>Votre nom :</label> <input type="text"
-								class="form-control  mt-2 mb-3" name="nom" placeholder="nom">
+							<label><spring:message
+							code="form.nom"></spring:message></label> <input type="text"
+								class="form-control  mt-2 mb-3" name="nom" placeholder=<spring:message
+							code="form.nom"></spring:message>>
 
-							<label>Votre E-mail :</label> <input type="text"
+							<label><spring:message
+							code="form.mail"></spring:message></label> <input type="text"
 								class="form-control  mt-2 mb-3" name="E-mail"
-								placeholder="E-mail"> <label>Votre Message :</label>
+								placeholder="<spring:message
+							code="form.mail"></spring:message>"> <label><spring:message
+							code="form.message"></spring:message></label>
 							<TEXTAREA type="text" class="form-control  mt-2 mb-3"
-								name="Message" placeholder="Message" row="20"></TEXTAREA>
+								name="Message" placeholder=<spring:message
+							code="form.message"></spring:message> row="20"></TEXTAREA>
 							<input class="btn btn-outline-primary mb-3  mt-2" type="submit"
-								value="sauvegarder">
+								value=<spring:message
+							code="form.send"></spring:message>>
 						</div>
 					</div>
 				</form>

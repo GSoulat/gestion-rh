@@ -29,7 +29,8 @@
 	<section class="container mt-5 ">
 		<div class="row mt-5">
 			<div class="card shadow-lg mt-3 mb-5 bg-body rounded col-12 col-lg-9">
-				<h3>Modifier un employee un employer</h3>
+				<h3><spring:message
+							code="title.update"></spring:message></h3>
 				<form:form modelAttribute="employee" action="updatesave"
 					method="post">
 					<div class="container d-flex justify-content">
@@ -40,34 +41,39 @@
 								path="empId" placeholder="EMPID" style=""></form:input>
 
 							<div class="input-group input-group-sm mb-3">
-								<span class="input-group-text" id="inputGroup-sizing-sm">FIRST_NAME</span>
+								<span class="input-group-text" id="inputGroup-sizing-sm"><spring:message
+							code="table.firstname"></spring:message></span>
 								<form:input type="text" class="form-control"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-sm" path="firstName"></form:input>
 							</div>
 
 							<div class="input-group input-group-sm mb-3">
-								<span class="input-group-text" id="inputGroup-sizing-sm">LAST_NAME</span>
+								<span class="input-group-text" id="inputGroup-sizing-sm"><spring:message
+							code="table.lastname"></spring:message></span>
 								<form:input type="text" class="form-control"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-sm" path="lastName"></form:input>
 							</div>
 
 							<div class="input-group input-group-sm mb-3">
-								<span class="input-group-text" id="inputGroup-sizing-sm">TITLE</span>
+								<span class="input-group-text" id="inputGroup-sizing-sm"><spring:message
+							code="table.title"></spring:message></span>
 								<form:input type="text" class="form-control"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-sm" path="title"></form:input>
 							</div>
 							<div class="input-group input-group-sm mb-3">
-								<span class="input-group-text" id="inputGroup-sizing-sm">START_DATE</span>
+								<span class="input-group-text" id="inputGroup-sizing-sm"><spring:message
+							code="table.startdate"></spring:message></span>
 								<form:input type="date" class="form-control"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-sm" path="startDate"></form:input>
 							</div>
 
 							<div class="input-group input-group-sm mb-3">
-								<span class="input-group-text" id="inputGroup-sizing-sm">END_DATE</span>
+								<span class="input-group-text" id="inputGroup-sizing-sm"><spring:message
+							code="table.enddate"></spring:message></span>
 								<form:input type="date" class="form-control"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-sm" path="endDate"></form:input>
@@ -76,8 +82,8 @@
 							<div class="input-group input-group-sm mb-3">
 								<span class="input-group-text" id="inputGroup-sizing-sm">Manager</span>
 								<select class="form-select" name="superiorEmpId">
-									<option value="0">---- Selectionnez un manager
-										----</option>
+									<option value="0"><spring:message
+							code="form.select.manager"></spring:message></option>
 									<c:forEach items="${listmanager}" var="manager">
 										<c:choose>
 											<c:when test="${employee.manager.empId == manager.empId}">
@@ -92,7 +98,8 @@
 							</div>
 
 							<input class="btn btn-outline-primary mb-3  mt-2" type="submit"
-								value="sauvegarder">
+								value=<spring:message
+							code="form.save"></spring:message>>
 						</div>
 					</div>
 				</form:form>

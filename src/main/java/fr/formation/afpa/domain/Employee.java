@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,15 +33,15 @@ public class Employee {
 	private Employee manager;
 	
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "manager")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "manager",  cascade = CascadeType.ALL)
 	private Set<Employee> employees = new HashSet<Employee>();
 	
 	@Column(name= "first_name", nullable = false, length = 30)
-	@NotEmpty(message = "Merci de saisir votre prénom")
+//	@NotEmpty(message = "Merci de saisir votre prénom")
 	private String firstName;
 	
 	@Column(name= "last_name", nullable = false, length = 30)
-	@NotEmpty(message = "Merci de saisir votre nom")
+//	@NotEmpty(message = "Merci de saisir votre nom")
 	private String lastName;
 	
 	@Temporal(TemporalType.DATE)
@@ -53,11 +54,11 @@ public class Employee {
 	private Date endDate;
 
 	@Column
-	@NotEmpty(message = "Merci de saisir votre titre")
+//	@NotEmpty(message = "Merci de saisir votre titre")
 	private String title;
 
-	@ManyToOne
-	@JoinColumn(name="DEPT_ID")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="DEPT_ID" )
 	private Department department;
 	
 	public Employee() {

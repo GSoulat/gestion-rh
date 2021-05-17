@@ -32,24 +32,26 @@ pageEncoding="utf-8"%>
       <div class="col-12 card shadow-lg p-3 mb-5 bg-body rounded  mt-5">
         <main class="form-signin">
           <form>
-            <h1 class="h3 mb-3 fw-normal">Connectez-vous</h1>
+            <h1 class="h3 mb-3 fw-normal"><spring:message
+							code="connnexion.connectervous"></spring:message></h1>
 
-              <label class="mt-3">Email </label>
+              <label class="mt-3"><spring:message
+							code="connnexion.email"></spring:message></label>
               <input type="email" class="form-control mt-1" id="floatingInput"
-                placeholder="name@example.com">
+                placeholder=<spring:message
+							code="connnexion.mail"></spring:message>>
 
-              <label class="mt-3">Password </label>
+              <label class="mt-3"><spring:message
+							code="connnexion.password"></spring:message></label>
               <input type="password" class="form-control mt-1" id="floatingPassword"
                 placeholder="Password">
             <div class="checkbox mt-2 mb-2">
-              <label> <input type="checkbox" value="remember-me">
-                Remember me
-              </label>
+          
             </div>
-            <a class="btn btn-lg btn-dark" href="accueil">Sign
-              in</a>
+            <a class="btn btn-lg btn-dark" href="accueil"><spring:message
+							code="connnexion.connectervous"></spring:message></a>
 
-            <p class="mt-2 mb-3 text-muted">&copy; 2017â2021</p>
+            <p class="mt-2 mb-3 text-muted">&copy;GS 2020-2021</p>
           </form>
         </main>
       </div>
